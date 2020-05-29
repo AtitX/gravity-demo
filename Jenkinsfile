@@ -47,7 +47,7 @@ pipeline {
             // bash -c "tele --state-dir=/mnt/tele-cache build -o cluster.tar overlays/onprem/vpc-grvty.taskworld.com"
             sh 'tele version'
             sh 'docker'
-            sh 'tele --state-dir=/mnt/tele-cache build -o wordpress.tar examples/wordpress/resources/app.yaml'
+            sh 'tele --state-dir=/mnt/tele-cache build -o wordpress.tar /mnt/app/gravity/examples/wordpress/resources/app.yaml'
             // sh 'tele build -o wordpress.tar examples/wordpress/resources/app.yaml'
           }
 
