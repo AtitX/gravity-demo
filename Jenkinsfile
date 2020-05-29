@@ -41,7 +41,7 @@ pipeline {
       //   }
       // }
       steps {
-        scripts {
+        script {
           withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '	12969df0-2291-4a1a-82f4-a1e6fb970a61', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
             // bash -c "tele --state-dir=/mnt/tele-cache build -o cluster.tar overlays/onprem/vpc-grvty.taskworld.com"
             sh 'tele --state-dir=/mnt/tele-cache build -o wordpress.tar wordpress/resources/app.yaml'
