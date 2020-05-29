@@ -1,8 +1,15 @@
 pipeline {
   agent { dockerfile {
     // label 'tele-buildbox:latest'
-    'tele-buildbox:latest'
+    // 'tele-buildbox:latest'
     additionalBuildArgs '--build-arg TELE_VERSION=7.0.5' }
+    args '-v /tmp:/tmp'
+    args '-v /tmp/tele-cache:/mnt/tele-cache'
+    args '-v /var/run/docker.sock:/var/run/docker.sock'
+    args '-v $(pwd):/mnt/app'
+    args '-w /mnt/cluster'
+    args '--net=host'
+
   }
   stages {
     // stage('Test') {
@@ -20,17 +27,17 @@ pipeline {
     }
 
     stage('Build') {
-      agent {
-        docker {
-          image 'tele-buildbox:latest'
-          args '-v /tmp/tele-cache:/mnt/tele-cache'
-          args '-v /var/run/docker.sock:/var/run/docker.sock'
-          args '-v $(pwd):/mnt/app'
-          args '-w /mnt/cluster'
-          args '--net=host'
-          reuseNode true
-        }
-      }
+      // agent {
+      //   docker {
+      //     image 'tele-buildbox:latest'
+      //     args '-v /tmp/tele-cache:/mnt/tele-cache'
+      //     args '-v /var/run/docker.sock:/var/run/docker.sock'
+      //     args '-v $(pwd):/mnt/app'
+      //     args '-w /mnt/cluster'
+      //     args '--net=host'
+      //     reuseNode true
+      //   }
+      // }
       steps {
         scripts {
           withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '	12969df0-2291-4a1a-82f4-a1e6fb970a61', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
