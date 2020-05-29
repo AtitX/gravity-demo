@@ -1,6 +1,6 @@
 pipeline {
   agent { dockerfile {
-    label 'tele-buildbox:latest'
+    // label 'tele-buildbox:latest'
     additionalBuildArgs '--build-arg TELE_VERSION=7.0.5' }
   }
   stages {
