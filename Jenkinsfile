@@ -21,7 +21,7 @@ pipeline {
     stage('Build') {
       agent {
         docker {
-          image 'tele-buildbox:latest'
+          // image 'tele-buildbox:latest'
           args '-v /tmp/tele-cache:/mnt/tele-cache'
           args '-v /var/run/docker.sock:/var/run/docker.sock'
           args '-v $(pwd):/mnt/app'
