@@ -1,14 +1,16 @@
 pipeline {
-  agent { dockerfile {
-    // label 'tele-buildbox:latest'
-    // 'tele-buildbox:latest'
-    additionalBuildArgs '--build-arg TELE_VERSION=7.0.5' }
-    args '-v /tmp:/tmp'
-    args '-v /tmp/tele-cache:/mnt/tele-cache'
-    args '-v /var/run/docker.sock:/var/run/docker.sock'
-    args '-v $(pwd):/mnt/app'
-    args '-w /mnt/cluster'
-    args '--net=host'
+  agent {
+    dockerfile {
+      // label 'tele-buildbox:latest'
+      // 'tele-buildbox:latest'
+      additionalBuildArgs '--build-arg TELE_VERSION=7.0.5'
+      args '-v /tmp:/tmp'
+      args '-v /tmp/tele-cache:/mnt/tele-cache'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
+      args '-v $(pwd):/mnt/app'
+      args '-w /mnt/cluster'
+      args '--net=host'
+    }
 
   }
   stages {
