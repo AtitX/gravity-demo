@@ -10,6 +10,7 @@ pipeline {
       args '-v $(pwd):/mnt/app'
       args '-w /mnt/cluster'
       args '--net=host'
+      args '-u root:root'
     }
 
   }
